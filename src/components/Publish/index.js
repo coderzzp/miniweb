@@ -21,6 +21,13 @@ class App extends React.Component {
   }
   componentWillMount(){
     //若该用户未登录，则跳转至登陆页面
+    axios.get('http://localhost:3003/api/b/auth',{withCredentials: true})
+      .then(res=>{
+        if(!res.data.success){
+          Toast.fail(res.data.err)
+          browserHistory.push('/login')
+        }
+      })
   }
   onPublish(){
     //收集数据并发送
