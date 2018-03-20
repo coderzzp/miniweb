@@ -40,7 +40,7 @@ class App extends React.Component {
     axios.post('http://localhost:3003/api/b/publish', json,{withCredentials: true})
       .then((res)=>{
         Toast.success('发表成功')
-        browserHistory.push('/main')
+        browserHistory.push('/index')
       })
   }
   onImageDrop(files) {
