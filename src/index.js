@@ -7,7 +7,7 @@ import Publish from './components/Publish'
 
 import { Router, Route, browserHistory ,IndexRoute} from 'react-router';
 import registerServiceWorker from './registerServiceWorker';
-
+console.log(process.env.NODE_ENV)
 ReactDOM.render(
 	(<Router history={browserHistory}>
 		<Route path='/' >

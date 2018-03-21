@@ -6,8 +6,8 @@ import Blocker from './components/Blocker'
 import Nav from './components/NavBar'
 import Personal from './components/Personal'
 import axios from 'axios'
-
- export default class TabBarExample extends React.Component {
+import myAxios from '../util/myAxios'
+export default class TabBarExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ import axios from 'axios'
     };
   }
   componentWillMount(){
-    axios.get('http://localhost:3003/api/b/main', {withCredentials: true})
+    myAxios.get('http://localhost:3003/api/b/main', {withCredentials: true})
       .then((res)=>{
         const data= res.data.data
         console.log(data)
