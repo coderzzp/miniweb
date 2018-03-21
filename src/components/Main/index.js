@@ -6,7 +6,7 @@ import Blocker from './components/Blocker'
 import Nav from './components/NavBar'
 import Personal from './components/Personal'
 import axios from 'axios'
-import myAxios from '../util/myAxios'
+
 export default class TabBarExample extends React.Component {
   constructor(props) {
     super(props);
@@ -17,30 +17,25 @@ export default class TabBarExample extends React.Component {
     };
   }
   componentWillMount(){
-    myAxios.get('http://localhost:3003/api/b/main', {withCredentials: true})
+    axios.get('b/main', {withCredentials: true})
       .then((res)=>{
         const data= res.data.data
-        console.log(data)
         this.setState({data})
       })
   }
   renderBlocker(){
     let res=[]
     const data= this.state.data
+    var reactkey=1
     res.push(
-      <div>
-        {
           data.map((item,index)=>{
             return (
-              <div>
+              <div key={reactkey++}>
                 <WhiteSpace size="xs" />
                 <Blocker data={item}/>
               </div>
             )
-          })
-        }
-        
-      </div>
+          })      
     )
     return res
   }

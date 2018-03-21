@@ -21,7 +21,7 @@ class App extends React.Component {
   }
   componentWillMount(){
     //若该用户未登录，则跳转至登陆页面
-    axios.get('http://localhost:3003/api/b/auth',{withCredentials: true})
+    axios.get('b/auth',{withCredentials: true})
       .then(res=>{
         if(!res.data.success){
           Toast.fail(res.data.err)
@@ -37,7 +37,7 @@ class App extends React.Component {
       word,
       uploadedFileCloudinaryUrl
     }
-    axios.post('http://localhost:3003/api/b/publish', json,{withCredentials: true})
+    axios.post('b/publish', json,{withCredentials: true})
       .then((res)=>{
         Toast.success('发表成功')
         browserHistory.push('/index')
@@ -62,7 +62,6 @@ class App extends React.Component {
       }
 
       if (response.body.secure_url !== '') {
-        console.log(response.body.secure_url)
         this.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url
         });
@@ -97,7 +96,7 @@ class App extends React.Component {
             {this.state.uploadedFileCloudinaryUrl === '' ? null :
             <div>
               <p>{this.state.uploadedFile.name}</p>
-              <img src={this.state.uploadedFileCloudinaryUrl} style={{width:'100%'}}/>
+              <img src={this.state.uploadedFileCloudinaryUrl} style={{width:'100%'}} alt='upload_img'/>
             </div>}
           </div>
         </form>

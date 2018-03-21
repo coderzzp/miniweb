@@ -13,7 +13,7 @@ export default class Personal extends React.Component{
     }
   }
   componentWillMount(){
-    axios.get('http://localhost:3003/api/user/info', {withCredentials: true})
+    axios.get('user/info', {withCredentials: true})
       .then(res=>{
         if(!res.data.success){
           Toast.fail(res.data.err)
@@ -28,22 +28,17 @@ export default class Personal extends React.Component{
   renderBlocker(){
     let res=[]
     const data= this.state.data.info
-    console.log(data)
     if(data){
+      var reactkey = 1;
       res.push(
-        <div>
-          {
-            data.map((item,index)=>{
-              return (
-                <div>
-                  <WhiteSpace size="xs" />
-                  <Blocker data={item}/>
-                </div>
-              )
-            })
-          }
-          
-        </div>
+        data.map((item,index)=>{
+          return (
+            <div key={reactkey++}>
+              <WhiteSpace size="xs" key={item.id}/>
+              <Blocker data={item} />
+            </div>
+          )
+        })
       )
       return res
     }
@@ -53,7 +48,7 @@ export default class Personal extends React.Component{
       <div>
         <div className='personal_container'>
           <div className='personal_head'>
-            <img src={require('./页面1.jpg')} />
+            <img src={require('./页面1.jpg')} alt='head'/>
             {this.state.data.userName}
           </div>
           

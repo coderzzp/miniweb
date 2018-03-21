@@ -10,7 +10,6 @@ export default class Nav extends React.Component{
         <NavBar
           mode="light"
           icon={<Icon type="left" />}
-          onLeftClick={() => console.log('onLeftClick')}
           rightContent={[
             <BottomAdd key='0'/>
           ]}
@@ -20,12 +19,6 @@ export default class Nav extends React.Component{
   }
 }
 class BottomAdd extends React.Component {
-  // componentDidMount(){
-  //   window.addEventListener('scroll',(e)=>{
-  //     console.log(e.target)
-  //     console.log(e.srcElement)
-  //   })
-  // }
   handleAdd(){
     browserHistory.push('/publish')
   }

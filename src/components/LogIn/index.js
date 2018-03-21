@@ -1,12 +1,11 @@
 import React from 'react'
-import { Toast, Icon, List,InputItem, Button, Checkbox, Tabs , WhiteSpace, Badge} from 'antd-mobile'
+import { Toast, List,InputItem, Tabs , Badge} from 'antd-mobile'
 import { createForm } from 'rc-form';
 import { browserHistory } from 'react-router';
 import './index.less'
 import axios from 'axios'
 
 // const List = Form.Item;
-const TabPane = Tabs.TabPane;
 
 const tabs = [
   { title: <Badge >注册</Badge> },
@@ -24,8 +23,7 @@ class NormalLoginForm extends React.Component {
     const self = this
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        axios.post('http://localhost:3003/api/u/signup', values,{withCredentials: true,})
+        axios.post('u/signup', values,{withCredentials: true,})
           .then(function (res) {
             if (res.data.success) {
               Toast.success('注册成功！请登录')
@@ -44,8 +42,7 @@ class NormalLoginForm extends React.Component {
   handleLogIn = (e) => {
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        axios.post('http://localhost:3003/api/u/signin', values,{withCredentials: true,})
+        axios.post('u/signin', values,{withCredentials: true,})
           .then(function (res) {
             if (res.data.success) {
               Toast.success('账户密码正确，正在进入下一个界面。。。')
@@ -129,50 +126,6 @@ class NormalLoginForm extends React.Component {
         </Tabs>
         
       </div>
-        
-      // <div>
-      //   <Tabs activeKey={activeKey} onChange={this.callbackClear}>
-      //     <TabPane tab="注册" key="1">
-      //       <List>
-      //         {getFieldDecorator('userName', {
-      //           rules: [{ required: true, Toast: 'Please InputItem your username!' }],
-      //         })(
-      //           <InputItem prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-      //           )}
-      //       </List>
-      //       <List>
-      //         {getFieldDecorator('password', {
-      //           rules: [{ required: true, Toast: 'Please InputItem your Password!' }],
-      //         })(
-      //           <InputItem prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-      //           )}
-      //       </List>
-      //       <Button type="primary" htmlType="submit" className="login-form-button">
-      //         注册
-      //         </Button> Or <a href="">register now!</a>
-      //     </TabPane>
-      //     <TabPane tab="登陆" key="2">
-      //       <List>
-      //         {getFieldDecorator('userName', {
-      //           rules: [{ required: true, Toast: 'Please InputItem your username!' }],
-      //         })(
-      //           <InputItem prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-      //           )}
-      //       </List>
-      //       <List>
-      //         {getFieldDecorator('password', {
-      //           rules: [{ required: true, Toast: 'Please InputItem your Password!' }],
-      //         })(
-      //           <InputItem prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-      //           )}
-      //       </List>
-      //       <Button type="primary" htmlType="submit" className="login-form-button">
-      //         登陆
-      //       </Button>
-      //       Or <a href="">register now!</a>
-      //     </TabPane>
-      //   </Tabs>
-      // </div>
     );
   }
 }
