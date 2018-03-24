@@ -9,7 +9,9 @@
 4. 个人主页
 5. 修改主页面svg图标
 6. 上传加速（优化？上传进度条？）
+## 后端项目地址
+https://github.com/coderzzp/koa2-sever/
 
-## 目前页面地址（仅支持移动端) 
+## 测试地址（仅支持移动端) 
 
-[miniweb]:(miniweb.coderzzp.com)
+http://miniweb.coderzzp.com
