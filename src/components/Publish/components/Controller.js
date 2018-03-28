@@ -8,11 +8,13 @@ class Controller extends React.Component{
   }
 
   render(){
+    const ifdisabled = this.props.disabled
+
     return (
       <div style={{textAlign:'center',overflow: 'auto'}}>
         <Button inline style={{float:'left'}} onClick={this.handleCancle}>取消</Button>
-        发微博
-        <Button inline type='primary' style={{float:'right'}} onClick={this.props.onPublish}>发送</Button>
+        <span style={{lineHeight:'40px'}}>发微博</span>
+        <Button disabled={ifdisabled} inline type='primary' style={{float:'right'}} onClick={this.props.onPublish}>发送</Button>
       </div>
     )
   }

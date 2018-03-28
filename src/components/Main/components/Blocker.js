@@ -10,7 +10,7 @@ const Blocker = ({data,ifCancel,onCancleBlog}) => (
     <div>
       <div className='head'>
         <img className='head_pic' src={require('./页面1.jpg')} alt='head' ></img>
-        <span>{data.userName}</span>
+        <span className='head_word'>{data.userName}</span>
         {ifCancel&&
         <Button className='head_cancle'
           onClick={() =>alert('Delete', 'Are you sure???', [

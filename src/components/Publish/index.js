@@ -5,6 +5,7 @@ import { Toast,List, TextareaItem } from 'antd-mobile';
 import {createForm} from 'rc-form'
 import { browserHistory } from 'react-router';
 import Controller from './components/Controller'
+import './index.less'
 import axios from 'axios'
 
 const CLOUDINARY_UPLOAD_PRESET = 'fpjzpwg1';
@@ -15,6 +16,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      uploading:false,
       uploadedFile: null,
       uploadedFileCloudinaryUrl: ''
     };
@@ -47,7 +49,7 @@ class App extends React.Component {
     this.setState({
       uploadedFile: files[0]
     });
-
+    this.setState({uploading:true})
     this.handleImageUpload(files[0]);
   }
 
@@ -63,6 +65,7 @@ class App extends React.Component {
 
       if (response.body.secure_url !== '') {
         this.setState({
+          uploading:false,
           uploadedFileCloudinaryUrl: response.body.secure_url
         });
       }
@@ -71,33 +74,32 @@ class App extends React.Component {
 
   render() {
     const { getFieldProps } = this.props.form;
-
+    const {uploading} = this.state
     return (
-      <div>
-        <Controller onPublish={()=>this.onPublish()}/>
+      <div className='Publish'>
+        {uploading&&Toast.loading('正在上传，请稍候...', 1)}
+        <Controller onPublish={()=>this.onPublish()} disabled={this.state.uploadedFileCloudinaryUrl?false:true}/>
         <List >
           <TextareaItem
             {...getFieldProps('word')}
+            count={140}
             rows={3}
             placeholder="说说照片故事..."
           />
         </List>
         <form>
           <div className="FileUpload">
+            {this.state.uploadedFileCloudinaryUrl === '' ? null :
+            <div className='hasUploaded'>
+              <img src={this.state.uploadedFileCloudinaryUrl} style={{width:'100px',height:'100px'}} alt='upload_img'/>
+            </div>}
             <Dropzone
+              className='Dropzone'
               onDrop={this.onImageDrop.bind(this)}
               multiple={false}
               accept="image/*">
-              <div>Drop an image or click to select a file to upload.</div>
+              <img src='https://res.cloudinary.com/coderzzp2/image/upload/v1522223810/%E5%8A%A0_2_foztta.svg' alt='img' style={{width:'100px',height:'100px'}}></img>
             </Dropzone>
-          </div>
-
-          <div>
-            {this.state.uploadedFileCloudinaryUrl === '' ? null :
-            <div>
-              <p>{this.state.uploadedFile.name}</p>
-              <img src={this.state.uploadedFileCloudinaryUrl} style={{width:'100%'}} alt='upload_img'/>
-            </div>}
           </div>
         </form>
       </div>

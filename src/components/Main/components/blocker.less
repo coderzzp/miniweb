@@ -1,16 +1,27 @@
 .blocker{
   position: relative;
-  .head_pic{
-    margin-top: 5px;
-    margin-left: 5px;
-    border-radius:20px;
-    width:20px;
-    height:20px;
-  }
-  .head_cancle{
-    display: inline;
-    //覆盖antd-mobile的em-button
-    background-color:#ebebef ;
+  .head{
+    padding: 10px;
+    .head_word{
+      vertical-align: super;
+    }
+    .head_pic{
+      border-radius:20px;
+      width:20px;
+      height:20px;
+      margin-right: 5px;
+    }
+    .head_cancle{
+      position: absolute;
+      right:10px;
+      display: inline;
+      //覆盖antd-mobile的em-button
+      background-color:#ebebef ;
+      ::before{
+       border: 0px; 
+      }
+      //
+    }
   }
   .word{
     color: #000;
@@ -18,5 +29,4 @@
   .pic{
     width: 100%;
   }
-
 }

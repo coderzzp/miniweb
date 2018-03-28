@@ -50,18 +50,18 @@ export default class TabBarExample extends React.Component {
             barTintColor="white"
           >
             <TabBar.Item
-              title="Life"
+              title="主页"
               key="Life"
               icon={<div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
+                background: 'url(https://res.cloudinary.com/coderzzp2/image/upload/v1522219502/%E5%BB%BA%E7%AD%91_gjacyo.svg) center center /  21px 21px no-repeat' }}
               />
               }
               selectedIcon={<div style={{
                 width: '22px',
                 height: '22px',
-                background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
+                background: 'url(https://res.cloudinary.com/coderzzp2/image/upload/v1522219480/%E5%BB%BA%E7%AD%91_1_djp2xw.svg) center center /  21px 21px no-repeat' }}
               />
               }
               selected={this.state.selectedTab === 'blueTab'}
@@ -78,9 +78,9 @@ export default class TabBarExample extends React.Component {
             </TabBar.Item>
 
             <TabBar.Item
-              icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-              selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-              title="My"
+              icon={{ uri: 'https://res.cloudinary.com/coderzzp2/image/upload/v1522219589/%E4%B8%AA%E4%BA%BA_t3tb17.svg' }}
+              selectedIcon={{ uri: 'https://res.cloudinary.com/coderzzp2/image/upload/v1522219571/%E4%B8%AA%E4%BA%BA_1_gtstef.svg' }}
+              title="个人"
               key="my"
               selected={this.state.selectedTab === 'yellowTab'}
               onPress={() => {
