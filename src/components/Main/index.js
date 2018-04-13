@@ -31,13 +31,37 @@ export default class TabBarExample extends React.Component {
           data.map((item,index)=>{
             return (
               <div key={reactkey++}>
-                <WhiteSpace size="xs" />
-                <Blocker data={item}/>
+                <WhiteSpace size="md" />
+                <Blocker data={item} onLike={(_id)=>this.onLike(_id)} onDisLike={(_id)=>this.onDisLike(_id)}/>
               </div>
             )
           })      
     )
     return res
+  }
+  onLike(_id){
+    axios.get(`b/like/${_id}`, {withCredentials: true})
+      .then((res)=>{
+        if(res.data){
+          axios.get('b/main', {withCredentials: true})
+            .then((res)=>{
+              const data= res.data.data
+              this.setState({data})
+            })
+        }
+      })
+  }
+  onDisLike(_id){
+    axios.get(`b/dislike/${_id}`, {withCredentials: true})
+      .then((res)=>{
+        if(res.data){
+          axios.get('b/main', {withCredentials: true})
+            .then((res)=>{
+              const data= res.data.data
+              this.setState({data})
+            })
+        }
+      })
   }
   render() {
     return (

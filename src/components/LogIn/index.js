@@ -46,6 +46,7 @@ class NormalLoginForm extends React.Component {
           .then(function (res) {
             if (res.data.success) {
               Toast.success('账户密码正确，正在进入下一个界面。。。')
+              document.cookie = `userName=${res.data.userName};expires=86400000`;
               browserHistory.push('/main')
             } else {
               var warn = res.data.reason || '未知错误'
@@ -72,7 +73,8 @@ class NormalLoginForm extends React.Component {
     const { activeKey } = this.state
 
     return (
-      <div>
+      <div className='login'>
+        <img src={require('../img/logo.png')} className={'login_logo'}></img>
         <Tabs tabs={tabs}
           initialPage={0}
           activeKey={Number(activeKey)}

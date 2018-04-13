@@ -13,7 +13,7 @@ export default class Nav extends React.Component{
           rightContent={[
             <BottomAdd key='0'/>
           ]}
-        >miniweb</NavBar>
+        >Archshare</NavBar>
       </div>
     )
   }
