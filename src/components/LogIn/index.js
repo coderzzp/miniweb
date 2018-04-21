@@ -47,7 +47,7 @@ class NormalLoginForm extends React.Component {
             if (res.data.success) {
               Toast.success('账户密码正确，正在进入下一个界面。。。')
               document.cookie = `userName=${res.data.userName};expires=86400000`;
-              browserHistory.push('/main')
+              browserHistory.push('/main/idea')
             } else {
               var warn = res.data.reason || '未知错误'
               Toast.fail(warn)

@@ -1,8 +1,8 @@
 import React from 'react'
-import './personal.less'
+import './index.less'
 import axios from 'axios'
 import Dropzone from 'react-dropzone'
-import Blocker from '../components/Blocker'
+import Blocker from '../PublicComp/Blocker'
 import {ActionSheet,Toast,WhiteSpace,Button} from 'antd-mobile'
 import {browserHistory} from 'react-router'
 import request from 'superagent'
@@ -35,7 +35,6 @@ export default class Personal extends React.Component{
           Toast.fail(res.data.err)
           browserHistory.push('/login')
         }else{
-          console.log(res)
           this.setState({
             data:res.data.info,
             user:res.data.user,
@@ -44,8 +43,6 @@ export default class Personal extends React.Component{
       })
   }
   onCancleBlog(cancledData){
-    console.log(cancledData)
-    console.log(this.state.data)
     var data = this.state.data
     data.forEach((element,index) => {
       if(element===cancledData){
@@ -71,7 +68,6 @@ export default class Personal extends React.Component{
     var reader = new FileReader(); 
     //将文件以Data URL形式读入页面 
     reader.readAsDataURL(file)
-    console.log(reader)
     reader.onload=function(e){ 
       self.setState({
         tempImg:reader.result
@@ -79,7 +75,6 @@ export default class Personal extends React.Component{
     } 
   }
   onHeadSure(){
-    console.log(this)
     this.setState({uploading:true})
     this.handleImageUpload(this.state.tempImg);
     this.setState({
@@ -187,7 +182,6 @@ export default class Personal extends React.Component{
     });
   }
   render(){
-    console.log(this.state.uploadedFileCloudinaryUrl)
     return (
       <div>
         {this.state.tempImg?

@@ -2,71 +2,23 @@ import { WhiteSpace } from 'antd-mobile';
 import React from 'react'
 import './index.less'
 import {TabBar} from 'antd-mobile'
-import Blocker from './components/Blocker'
 import Nav from './components/NavBar'
-import Personal from './components/Personal'
 import axios from 'axios'
+import {browserHistory} from 'react-router'
+
 
 export default class TabBarExample extends React.Component {
   constructor(props) {
     super(props);
+    const selectedTab = window.location.href.split('/').slice(-1)[0]
     this.state = {
-      selectedTab: 'blueTab',
-      data:[],
+      selectedTab,
       fullScreen: true,
     };
   }
-  componentWillMount(){
-    axios.get('b/main', {withCredentials: true})
-      .then((res)=>{
-        const data= res.data.data
-        this.setState({data})
-      })
-  }
-  renderBlocker(){
-    let res=[]
-    const data= this.state.data
-    var reactkey=1
-    res.push(
-          data.map((item,index)=>{
-            return (
-              <div key={reactkey++}>
-                <WhiteSpace size="md" />
-                <Blocker data={item} onLike={(_id)=>this.onLike(_id)} onDisLike={(_id)=>this.onDisLike(_id)}/>
-              </div>
-            )
-          })      
-    )
-    return res
-  }
-  onLike(_id){
-    axios.get(`b/like/${_id}`, {withCredentials: true})
-      .then((res)=>{
-        if(res.data){
-          axios.get('b/main', {withCredentials: true})
-            .then((res)=>{
-              const data= res.data.data
-              this.setState({data})
-            })
-        }
-      })
-  }
-  onDisLike(_id){
-    axios.get(`b/dislike/${_id}`, {withCredentials: true})
-      .then((res)=>{
-        if(res.data){
-          axios.get('b/main', {withCredentials: true})
-            .then((res)=>{
-              const data= res.data.data
-              this.setState({data})
-            })
-        }
-      })
-  }
   render() {
     return (
-      <div>
-        
+      <div> 
         <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { height: 680 }}>
           <TabBar
             unselectedTintColor="#949494"
@@ -88,32 +40,49 @@ export default class TabBarExample extends React.Component {
                 background: 'url(https://res.cloudinary.com/coderzzp2/image/upload/v1522219480/%E5%BB%BA%E7%AD%91_1_djp2xw.svg) center center /  21px 21px no-repeat' }}
               />
               }
-              selected={this.state.selectedTab === 'blueTab'}
+              selected={this.state.selectedTab === 'blog'}
               badge={0}
               onPress={() => {
+                browserHistory.push('/main/blog')
                 this.setState({
-                  selectedTab: 'blueTab',
+                  selectedTab: 'blog',
                 });
               }}
               data-seed="logId"
             >
               <Nav/>
-              {this.renderBlocker()}
+              {this.props.children}
+              {/* {this.renderBlocker()} */}
             </TabBar.Item>
-
+            <TabBar.Item
+              icon={{ uri: 'https://res.cloudinary.com/coderzzp2/image/upload/v1523883520/idea_gflk97.svg' }}
+              selectedIcon={{ uri: 'https://res.cloudinary.com/coderzzp2/image/upload/v1523883544/idea_1_vpfgqk.svg' }}
+              title="idea"
+              key="idea"
+              selected={this.state.selectedTab === 'idea'}
+              onPress={() => {
+                browserHistory.push('/main/idea')
+                this.setState({
+                  selectedTab: 'idea',
+                });
+              }}
+            >
+              {this.props.children}
+            </TabBar.Item>
             <TabBar.Item
               icon={{ uri: 'https://res.cloudinary.com/coderzzp2/image/upload/v1522219589/%E4%B8%AA%E4%BA%BA_t3tb17.svg' }}
               selectedIcon={{ uri: 'https://res.cloudinary.com/coderzzp2/image/upload/v1522219571/%E4%B8%AA%E4%BA%BA_1_gtstef.svg' }}
               title="个人"
               key="my"
-              selected={this.state.selectedTab === 'yellowTab'}
+              selected={this.state.selectedTab === 'personal'}
               onPress={() => {
+                browserHistory.push('/main/personal')
                 this.setState({
-                  selectedTab: 'yellowTab',
+                  selectedTab: 'personal',
                 });
               }}
             >
-              <Personal/>
+              {this.props.children}
             </TabBar.Item>
           </TabBar>
         </div>

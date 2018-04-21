@@ -27,7 +27,7 @@ class App extends React.Component {
       .then(res=>{
         if(!res.data.success){
           Toast.fail(res.data.err)
-          browserHistory.push('/login')
+          browserHistory.push('/main/blog')
         }
       })
   }
