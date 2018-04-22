@@ -35,6 +35,6 @@ http://miniweb.coderzzp.com
 - 上传头像功能
 `2018/4/18`
 - 整理router，组件目录
-- 爬虫爬取beta-arch网站，作为新增Idea模块的内容
+- 爬虫爬取beta-arch网站(spider.js)，作为新增Idea模块的内容
 `2018/4/21`
 - 页面懒加载

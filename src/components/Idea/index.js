@@ -17,6 +17,7 @@ export default class Idea extends React.Component{
   }
   componentWillMount(){
     const {page}=this.state
+    console.log('componentWillMount')
     axios.get(`idea/head/${page}`, {withCredentials: true})
       .then((res)=>{
         const data= res.data.data
