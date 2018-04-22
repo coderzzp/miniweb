@@ -2,12 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// import Main from './components/Main'
-// import Publish from './components/Publish'
-// import IdeaArticle from './components/IdeaArticle'
-// import Idea from './components/Idea'
-// import Personal from './components/Personal'
-// import Blog from './components/Blog'
 import {
   Blog,
   Idea,
